@@ -1,0 +1,109 @@
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+
+class FDemo extends JFrame implements KeyListener
+{
+JTextField tx1;
+JPasswordField tx2;
+FDemo()
+{
+setTitle("Login Page");
+setLayout(null);
+Font f=new Font("",Font.ITALIC,30);
+setFont(f);
+
+JLabel un=new JLabel("Enter Name");
+un.setSize(350,70);
+un.setLocation(100,100);
+un.setFont(f);
+add(un);
+
+tx1=new JTextField("Enter Name",10);
+tx1.setSize(500,70);
+tx1.setLocation(450,100);
+tx1.setFont(f);
+add(tx1);
+tx1.addKeyListener(this);
+tx1.setForeground(Color.gray);
+
+JLabel up=new JLabel("Enter Pass");
+up.setSize(350,70);
+up.setLocation(100,200);
+up.setFont(f);
+add(up);
+
+tx2=new JPasswordField("Enter Password",10);
+tx2.setSize(500,70);
+tx2.setLocation(450,200);
+tx2.setFont(f);
+tx2.setEchoChar((char)0);
+add(tx2);
+tx2.addKeyListener(this);
+tx2.setForeground(Color.gray);
+
+JButton b1=new JButton("Login");
+b1.setSize(200,70);
+b1.setLocation(250,350);
+b1.setFont(f);
+add(b1);
+
+setResizable(false);
+}
+public void keyReleased(KeyEvent e)
+{
+if(tx1.isFocusOwner())
+{
+String s1=tx1.getText().trim();
+if(s1.equals(""))
+{
+tx1.setText("Enter Name");
+tx1.setForeground(Color.gray);
+}
+}
+if(tx2.isFocusOwner())
+{
+String s1=tx2.getText().trim();
+if(s1.equals(""))
+{
+tx2.setText("Enter Name");
+tx2.setForeground(Color.gray);
+tx2.setEchoChar((char)0);
+}
+}
+}
+public void keyPressed(KeyEvent e)
+{
+if(tx1.isFocusOwner())
+{
+String s1=tx1.getText();
+if(s1.equals("Enter Name"))
+{
+tx1.setText("");
+tx1.setForeground(Color.black);
+}
+}
+if(tx2.isFocusOwner())
+{
+String s1=tx2.getText();
+if(s1.equals("Enter Password"))
+{
+tx2.setText("");
+tx2.setForeground(Color.black);
+tx2.setEchoChar('*');
+}
+}
+}
+public void keyTyped(KeyEvent e) {}
+}
+class LoginPage1
+{
+public static void main(String ar[])
+{
+FDemo f=new FDemo();
+  f.setVisible(true);
+       f.setSize(1000,500);
+  f.setLocation(200,100);
+  f.setDefaultCloseOperation(f.EXIT_ON_CLOSE);
+}
+}
